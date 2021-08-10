@@ -1,21 +1,24 @@
 {
-    "symbol":               {    "type": "varchar",    "length": "10",    "required": "yes",    "default": "none" },
+    "daily_summary":
+    {
+        "symbol":               {    "type": "varchar",    "length": "10",    "required": "yes",    "default": "none" },
 
-    "company":              {    "type": "varchar",    "length": "30",    "required": "yes",    "default": "none" },
+        "company":              {    "type": "varchar",    "length": "30",    "required": "yes",    "default": "none" },
 
-    "last_sale":            {    "type": "double",     "length": "20",    "required": "yes",    "default": "none" },
+        "last_sale":            {    "type": "double",     "length": "20",    "required": "yes",    "default": "none" },
 
-    "net_change":           {    "type": "double",     "length": "20",    "required": "yes",    "default": "none" },
+        "net_change":           {    "type": "double",     "length": "20",    "required": "yes",    "default": "none" },
 
-    "percent_change":       {    "type": "double",     "length": "20",    "required": "yes",    "default": "none" },
+        "percent_change":       {    "type": "double",     "length": "20",    "required": "yes",    "default": "none" },
 
-    "market_cap":           {    "type": "double",     "length": "20",    "required": "yes",    "default": "none" },
+        "market_cap":           {    "type": "double",     "length": "20",    "required": "yes",    "default": "none" },
 
-    "ipo_year":             {    "type": "int",        "length": "4",     "required": "no",     "default": "none" },
+        "ipo_year":             {    "type": "int",        "length": "4",     "required": "no",     "default": "none" },
 
-    "volume":               {    "type": "double",     "length": "20",    "required": "yes",    "default": "none" },
+        "volume":               {    "type": "double",     "length": "20",    "required": "yes",    "default": "none" },
 
-    "sector":               {    "type": "varchar",    "length": "20",    "required": "no",     "default": "none" },
+        "sector":               {    "type": "varchar",    "length": "20",    "required": "no",     "default": "none" },
 
-    "industry":             {    "type": "varchar",    "length": "20",    "required": "no",     "default": "none" }
+        "industry":             {    "type": "varchar",    "length": "20",    "required": "no",     "default": "none" }
+    }
 }
