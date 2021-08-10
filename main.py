@@ -2,7 +2,7 @@
 #                                                                                   #
 # Overview                                                                          #
 #                                                                                   #
-#    google_sheets_validate.py --worksheet="daily_stock_summary"                    #
+#    main.py --worksheet="daily_stock_summary"                                      #
 #                                                                                   #
 # Description                                                                       #
 #                                                                                   #
