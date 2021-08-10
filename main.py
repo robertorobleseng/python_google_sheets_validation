@@ -57,7 +57,7 @@ def create_connection():
     return gs_conn
 
 def get_worksheet_values(gs_conn, wks_name):
-    '''returns all values from a worksheets as a list of disctionaries'''
+    '''returns all values from a worksheet as a list of disctionaries'''
 
     try:
 
