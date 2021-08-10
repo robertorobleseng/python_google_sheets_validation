@@ -81,6 +81,8 @@ def main():
 
     for V in values:
 
+        # add validation logic here
+        
         print(V)
 
 
