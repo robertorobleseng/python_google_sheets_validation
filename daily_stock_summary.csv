@@ -1,0 +1,12 @@
+field,type,length,required,default
+symbol,varchar,10,yes,None
+name,varchar,30,yes,None
+last_sale,double,20,yes,None
+net_change,double,20,yes,None
+percent_change,double,20,yes,None
+market_cap,double,20,yes,None
+country,varchar,40,no,None
+ipo_year,int,4,no,None
+volume,double,20,yes,None
+sector,varchar,20,no,None
+industry,varchar,20,no,None
