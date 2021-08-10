@@ -59,11 +59,17 @@ def create_connection():
 def get_worksheet_values(gs_conn, wks_name):
     '''returns all values from a worksheets as a list of disctionaries'''
 
-    wks = gs_conn.open(wks_name).sheet1
+    try:
 
-    list_of_dicts = wks.get_all_records()
+        wks = gs_conn.open(wks_name).sheet1
 
-    return list_of_dicts
+        values = wks.get_all_records()
+
+    except (gspread.SpreadsheetNotFound) as E:
+
+        logging.error(E)
+
+    return values
 
 #####################
 # Main              #
