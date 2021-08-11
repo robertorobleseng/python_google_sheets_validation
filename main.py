@@ -47,7 +47,7 @@ log_date = datetime.date.today()
 
 log_file = "google_sheets_validate_{}.log".format(log_date)
 
-logging.basicConfig(format="%(asctime)s - %(filename)s - %(levelname)s - %(message)s", level=logging.INFO, filename=log_file)
+logging.basicConfig(format="%(asctime)s - %(filename)s - %(levelname)s - %(message)s", level=logging.INFO)     # filename=log_file)
 
 #####################
 # Functions         #
@@ -59,6 +59,7 @@ def import_schema(file_name):
     data = None
 
     try:
+
         with open(file_name) as contents:
 
             data = json.load(contents, object_pairs_hook=collections.OrderedDict)
@@ -79,11 +80,13 @@ def create_connection():
 def get_worksheet_values(gs_conn, wks_name):
     '''returns all values from a worksheet as a list of disctionaries'''
 
+    values = None
+
     try:
 
         wks = gs_conn.open(wks_name).sheet1
 
-        values = wks.get_all_records()
+        values = wks.get_all_values()
 
     except (gspread.SpreadsheetNotFound) as E:
 
@@ -94,7 +97,28 @@ def get_worksheet_values(gs_conn, wks_name):
 def check_int(field, value):
     '''checks if the field is an integer'''
 
-    if isinstance(value, int):
+    int_value = int(value)
+
+    if isinstance(int_value, int):
+        pass
+
+    else:
+        value_error(field, value)
+
+def check_float(field, value):
+    '''checks if the field is a float'''
+
+    float_value = None
+
+    if "%" in value:
+
+        float_value = float(value[:-1])
+
+    elif "$" in value:
+
+        float_value = float(value[1:])
+
+    if isinstance(float_value, float):
         pass
 
     else:
@@ -128,20 +152,51 @@ def main():
 
     wks_name  = args.worksheet
 
-    values    = get_worksheet_values(gs_conn, wks_name)
+    wks_rows  = get_worksheet_values(gs_conn, wks_name)
 
     for table in schema:
-        
+
         logging.info("Running checks for table {}".format(table))
 
         columns = list(schema[table])
-        
-            for V in values:
 
-            # add validation logic here
-        
-                print(V)
+        for row in wks_rows:
 
+            try:
+
+                for field_index, field_value in enumerate(row):
+
+                    for schema_index, field in enumerate(columns):
+
+                        if field_index == schema_index:
+
+                            if "yes" in schema[table][field]["required"]:
+
+                                if len(field_value) < 1:
+
+                                    value_error(field, field_value) 
+
+                            if "int" in schema[table][field]["type"]:
+
+                                check_int(field, field_value)
+
+                            if "float" in schema[table][field]["type"]:
+
+                                check_float(field, field_value)
+
+                            if "string" in schema[table][field]["type"]:
+
+                                field_length = len(field_value)
+
+                                check_string(field, field_value, field_length)
+
+            except(Exception, IndexError) as E:
+
+                logging.error(E)
+
+                pass
+
+    logging.info("Validation complete.")
 
 #####################
 # Start             #
