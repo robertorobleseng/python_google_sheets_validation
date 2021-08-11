@@ -47,7 +47,7 @@ log_date = datetime.date.today()
 
 log_file = "google_sheets_validate_{}.log".format(log_date)
 
-logging.basicConfig(format="%(asctime)s - %(filename)s - %(levelname)s - %(message)s", level=logging.INFO)     # filename=log_file)
+logging.basicConfig(format="%(asctime)s - %(filename)s - %(levelname)s - %(message)s", level=logging.INFO, filename=log_file)
 
 #####################
 # Functions         #
