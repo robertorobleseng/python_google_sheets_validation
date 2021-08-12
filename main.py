@@ -129,7 +129,6 @@ def value_error(field, value):
     '''logs as error if a value does not match the field specifications as listed in the database schema'''
 
     logging.error("invalid value detected for column {}: \'{}\'".format(field, value))
-    logging.error("field type: {}".format(type(value)))
 
     
 #####################
