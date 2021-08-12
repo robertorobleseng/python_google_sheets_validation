@@ -1,2 +1,3 @@
-# ignore credentials file
+# ignore files
+git_push.sh
 credentials.json
