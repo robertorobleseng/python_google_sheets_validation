@@ -108,15 +108,7 @@ def check_int(field, value):
 def check_float(field, value):
     '''checks if the field is a float'''
 
-    float_value = None
-
-    if "%" in value:
-
-        float_value = float(value[:-1])
-
-    elif "$" in value:
-
-        float_value = float(value[1:])
+    float_value = float(value)
 
     if isinstance(float_value, float):
         pass
@@ -137,6 +129,8 @@ def value_error(field, value):
     '''logs as error if a value does not match the field specifications as listed in the database schema'''
 
     logging.error("invalid value detected for column {}: \'{}\'".format(field, value))
+    logging.error("field type: {}".format(type(value)))
+
     
 #####################
 # Main              #
